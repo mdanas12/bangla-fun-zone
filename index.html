@@ -121,7 +121,58 @@
       nav a { margin: 3px 5px; font-size: 14px; }
       main { padding: 18px 12px; }
       .card { padding: 16px; }
-    }
+    } 
+    
+/* Bangla Fun Zone Meme Maker */
+.meme-box {
+  background: white;
+  padding: 18px;
+  margin: 20px 0;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px #00000012;
+}
+
+.meme-box input,
+.meme-box select {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 14px;
+  border: 1px solid #ddd;
+  border-radius: 9px;
+  font-size: 16px;
+}
+
+.meme-preview {
+  width: 100%;
+  max-width: 500px;
+  margin: 15px auto;
+  background: #222;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#memeCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.meme-label {
+  display: block;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.meme-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.meme-actions button {
+  flex: 1 1 130px;
+}
+
   </style>
 </head>
 
@@ -345,6 +396,53 @@
   <div class="joke"><p>৩০. জীবন ছোট, তাই রাগ কমাও আর বিরিয়ানি বাড়াও! 🍛</p></div>
 </section>
 
+    
+<section class="section" id="meme-maker">
+  <h2>😂 নিজের মিম নিজেই বানাও</h2>
+  <p>ছবি বেছে নাও, মজার লেখা দাও, তারপর মিম ডাউনলোড করো!</p>
+
+  <div class="meme-box">
+    <label class="meme-label" for="memeTemplate">🎨 টেমপ্লেট বেছে নাও</label>
+    <select id="memeTemplate">
+      <option value="plain">সাধারণ ব্যাকগ্রাউন্ড</option>
+      <option value="funny">😂 ফানি মুড</option>
+      <option value="study">📚 পরীক্ষার চাপ</option>
+      <option value="love">💘 প্রেমের অবস্থা</option>
+      <option value="sleep">😴 ঘুম পেলে</option>
+    </select>
+
+    <label class="meme-label" for="memeImage">📷 নিজের ছবি আপলোড করো</label>
+    <input id="memeImage" type="file" accept="image/*">
+
+    <label class="meme-label" for="memeTop">✍️ ছবির উপরের লেখা</label>
+    <input id="memeTop" type="text" placeholder="যেমন: পরীক্ষার আগের রাত">
+
+    <label class="meme-label" for="memeBottom">✍️ ছবির নিচের লেখা</label>
+    <input id="memeBottom" type="text" placeholder="যেমন: কিছুই পড়া হয়নি! 😂">
+
+    <label class="meme-label" for="memeColor">🎨 লেখার রং</label>
+    <select id="memeColor">
+      <option value="#ffffff">সাদা</option>
+      <option value="#ffeb3b">হলুদ</option>
+      <option value="#ff69b4">গোলাপি</option>
+      <option value="#000000">কালো</option>
+    </select>
+
+    <div class="meme-actions">
+      <button type="button" onclick="updateMeme()">✨ মিম তৈরি করো</button>
+      <button type="button" onclick="downloadMeme()">⬇️ মিম ডাউনলোড</button>
+      <button type="button" onclick="shareMeme()">🔗 মিম শেয়ার</button>
+    </div>
+
+    <div class="meme-preview">
+      <canvas id="memeCanvas" width="600" height="600"></canvas>
+    </div>
+
+    <p>💡 তোমার ছবি এই ডেমোতে ব্রাউজারেই প্রসেস হবে। সার্ভারে আপলোড হবে না।</p>
+  </div>
+</section>
+
+    
     <section class="section" id="about">
       <h2>ℹ️ Bangla Fun Zone সম্পর্কে</h2>
       <div class="card">
@@ -453,6 +551,193 @@
       document.getElementById("emptyMessage").style.display =
         visible === 0 ? "block" : "none";
     });
+
+    
+let memeImageObject = null;
+
+const memeCanvas = document.getElementById("memeCanvas");
+const memeContext = memeCanvas.getContext("2d");
+
+function loadMemeImage(file) {
+  if (!file || !file.type.startsWith("image/")) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function (event) {
+    const image = new Image();
+
+    image.onload = function () {
+      memeImageObject = image;
+      updateMeme();
+    };
+
+    image.src = event.target.result;
+  };
+
+  reader.readAsDataURL(file);
+}
+
+document.getElementById("memeImage").addEventListener("change", function () {
+  loadMemeImage(this.files[0]);
+});
+
+function drawMemeText(text, y, color, maxWidth) {
+  if (!text.trim()) return;
+
+  memeContext.textAlign = "center";
+  memeContext.textBaseline = "middle";
+  memeContext.font = "bold 34px sans-serif";
+  memeContext.lineJoin = "round";
+  memeContext.lineWidth = 5;
+  memeContext.strokeStyle = color.toLowerCase() === "#000000"
+    ? "#ffffff" : "#000000";
+  memeContext.fillStyle = color;
+
+  const words = text.split(/\s+/);
+  const lines = [];
+  let line = "";
+
+  for (const word of words) {
+    const testLine = line ? line + " " + word : word;
+
+    if (memeContext.measureText(testLine).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = testLine;
+    }
+  }
+
+  if (line) lines.push(line);
+
+  const lineHeight = 42;
+  const startY = y - ((lines.length - 1) * lineHeight) / 2;
+
+  lines.forEach(function (item, index) {
+    const lineY = startY + index * lineHeight;
+    memeContext.strokeText(item, 300, lineY, maxWidth);
+    memeContext.fillText(item, 300, lineY, maxWidth);
+  });
+}
+
+function updateMeme() {
+  const canvas = memeCanvas;
+  const ctx = memeContext;
+  const template = document.getElementById("memeTemplate").value;
+  const topText = document.getElementById("memeTop").value;
+  const bottomText = document.getElementById("memeBottom").value;
+  const color = document.getElementById("memeColor").value;
+
+  const backgrounds = {
+    plain: "#e9e9e9",
+    funny: "#ffcf70",
+    study: "#b9dcff",
+    love: "#ffc5df",
+    sleep: "#c9c6ff"
+  };
+
+  ctx.clearRect(0, 0, 600, 600);
+
+  if (memeImageObject) {
+    const img = memeImageObject;
+    const scale = Math.max(600 / img.width, 600 / img.height);
+    const width = img.width * scale;
+    const height = img.height * scale;
+
+    ctx.drawImage(
+      img,
+      (600 - width) / 2,
+      (600 - height) / 2,
+      width,
+      height
+    );
+  } else {
+    ctx.fillStyle = backgrounds[template] || "#eeeeee";
+    ctx.fillRect(0, 0, 600, 600);
+
+    const labels = {
+      plain: "MY MEME",
+      funny: "😂 ফানি মুড 😂",
+      study: "📚 পরীক্ষার চাপ",
+      love: "💘 প্রেমের অবস্থা",
+      sleep: "😴 ঘুম পাচ্ছে"
+    };
+
+    ctx.fillStyle = "#292929";
+    ctx.textAlign = "center";
+    ctx.font = "bold 38px sans-serif";
+    ctx.fillText(labels[template] || "MY MEME", 300, 300);
+  }
+
+  drawMemeText(topText, 65, color, 540);
+  drawMemeText(bottomText, 535, color, 540);
+}
+
+document.getElementById("memeTemplate").addEventListener("change", updateMeme);
+document.getElementById("memeTop").addEventListener("input", updateMeme);
+document.getElementById("memeBottom").addEventListener("input", updateMeme);
+document.getElementById("memeColor").addEventListener("change", updateMeme);
+
+function downloadMeme() {
+  updateMeme();
+
+  memeCanvas.toBlob(function (blob) {
+    if (!blob) {
+      alert("মিম তৈরি করা যায়নি। আবার চেষ্টা করো।");
+      return;
+    }
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "bangla-fun-zone-meme.png";
+    link.click();
+
+    setTimeout(function () {
+      URL.revokeObjectURL(url);
+    }, 1000);
+  }, "image/png");
+}
+
+async function shareMeme() {
+  updateMeme();
+
+  memeCanvas.toBlob(async function (blob) {
+    if (!blob) {
+      alert("মিম তৈরি করা যায়নি।");
+      return;
+    }
+
+    const file = new File([blob], "bangla-meme.png", {
+      type: "image/png"
+    });
+
+    try {
+      if (
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] })
+      ) {
+        await navigator.share({
+          title: "আমার বাংলা মিম",
+          text: "Bangla Fun Zone-এ আমার তৈরি মিম দেখো!",
+          files: [file]
+        });
+      } else {
+        alert("এই ব্রাউজারে সরাসরি মিম শেয়ার করা যাচ্ছে না। আগে মিম ডাউনলোড করো, তারপর শেয়ার করো।");
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        alert("শেয়ার করা যায়নি। মিমটি ডাউনলোড করে শেয়ার করো।");
+      }
+    }
+  }, "image/png");
+}
+
+updateMeme();
+
+    
   </script>
 </body>
 </html>
