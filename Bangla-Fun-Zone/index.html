@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bangla Fun Zone — বাংলা মজার কুইজ খেলো, নিজের মিম বানাও, বন্ধুদের সঙ্গে শেয়ার করো।">
+<title>Bangla Fun Zone | কুইজ ও মিম মেকার</title>
+<style>
+:root{--ink:#252044;--muted:#6e6885;--pink:#ff4f9a;--purple:#7457ff;--yellow:#ffda65;--cyan:#75e5e0;--paper:#fffdf8;--line:#eee8f8;--shadow:0 14px 40px rgba(52,31,100,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali","Nirmala UI",sans-serif;color:var(--ink);background:linear-gradient(135deg,#fff7fc 0%,#f5f3ff 45%,#efffff 100%);min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer;border:0}
+.wrap{width:min(1120px,92%);margin:auto}
+header{padding:18px 0;position:sticky;top:0;z-index:10;background:rgba(255,253,248,.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(238,232,248,.8)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:950;font-size:1.25rem;letter-spacing:-.5px;display:flex;align-items:center;gap:9px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--purple));display:grid;place-items:center;color:white;font-size:23px;box-shadow:0 7px 18px #ff4f9a40}
+.navlinks{display:flex;gap:9px;flex-wrap:wrap}.navlinks a{text-decoration:none;color:var(--ink);font-weight:750;font-size:.92rem;padding:10px 13px;border-radius:12px}.navlinks a:hover{background:#f0eaff}
+.hero{padding:58px 0 36px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:8px 13px;border-radius:99px;font-size:.86rem;font-weight:800;color:#7852dc}.hero h1{font-size:clamp(2.35rem,6vw,4.5rem);line-height:1.1;letter-spacing:-2px;margin:18px 0 14px}.gradient{background:linear-gradient(90deg,#ff4f9a,#7955ff,#08a9a5);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{font-size:1.08rem;line-height:1.8;color:var(--muted);max-width:610px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;padding:13px 18px;border-radius:14px;font-weight:850;text-decoration:none;transition:.18s transform}.btn:hover{transform:translateY(-2px)}.primary{color:#fff;background:linear-gradient(120deg,var(--pink),var(--purple));box-shadow:0 10px 24px #8b5cf633}.secondary{background:#fff;color:var(--ink);border:1px solid var(--line)}.hero-art{position:relative;min-height:310px;display:grid;place-items:center}.bubble{position:absolute;border-radius:28px;box-shadow:var(--shadow);display:grid;place-items:center}.bubble.big{width:225px;height:235px;transform:rotate(-5deg);background:linear-gradient(145deg,#ffdc70,#ff9fbd);font-size:6.3rem}.bubble.small{width:145px;height:125px;right:1%;top:16%;transform:rotate(9deg);background:linear-gradient(145deg,#8ff4e9,#a2a0ff);font-size:4rem}.bubble.note{width:155px;height:115px;left:0;bottom:6%;transform:rotate(-9deg);background:#fff;font-size:1rem;font-weight:900;text-align:center;padding:15px;color:#7852dc}
+.section{padding:36px 0 54px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:22px}.section h2{font-size:clamp(1.7rem,4vw,2.45rem);margin:0 0 8px;letter-spacing:-.7px}.section-head p{margin:0;color:var(--muted);line-height:1.6}.pill{display:inline-block;padding:7px 11px;border-radius:99px;background:#fff2a9;font-weight:850;font-size:.8rem}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:23px;padding:21px;box-shadow:var(--shadow)}.quiz-card{position:relative;overflow:hidden;display:flex;flex-direction:column;min-height:220px}.quiz-card:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-35px;top:-38px;background:var(--wash,#ffe1ed);opacity:.8}.emoji{font-size:2.3rem;margin-bottom:13px;position:relative;z-index:1}.quiz-card h3{margin:0 0 8px;font-size:1.2rem;position:relative;z-index:1}.quiz-card p{margin:0 0 18px;color:var(--muted);line-height:1.65;flex:1;position:relative;z-index:1}.quiz-card button{align-self:flex-start;position:relative;z-index:1}
+.meme-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px;align-items:start}.controls{display:grid;gap:15px}.field{display:grid;gap:7px}.field label{font-weight:800;font-size:.92rem}.field input[type=text],.field select{width:100%;padding:12px 13px;border:1px solid #e3dcef;border-radius:12px;background:#fff;color:var(--ink);outline-color:var(--purple)}.field input[type=file]{width:100%;padding:10px;background:#fff;border:1px dashed #c9b9ef;border-radius:12px}.hint{color:var(--muted);font-size:.83rem;line-height:1.55}.canvas-wrap{background:#f4f0ff;border:1px solid var(--line);border-radius:22px;padding:14px;min-height:300px;display:grid;place-items:center}.canvas-wrap canvas{width:100%;max-width:600px;height:auto;border-radius:12px;box-shadow:0 8px 24px #3b2a6520;background:#fff}.canvas-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:13px}.quiz-modal{display:none;position:fixed;inset:0;z-index:50;background:#1c1538a8;backdrop-filter:blur(6px);padding:18px;overflow:auto;align-items:center;justify-content:center}.quiz-modal.show{display:flex}.modal-card{background:var(--paper);width:min(620px,100%);border-radius:25px;padding:clamp(20px,4vw,32px);box-shadow:0 30px 80px #120d2a55;max-height:92vh;overflow:auto}.modal-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.close{width:38px;height:38px;border-radius:12px;background:#f0eaff;font-size:1.2rem;font-weight:900}.progress{height:8px;background:#eee8f8;border-radius:99px;overflow:hidden;margin:16px 0 22px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple));transition:width .2s}.question{font-size:1.35rem;line-height:1.55;font-weight:900;margin:12px 0 18px}.answers{display:grid;gap:10px}.answer{padding:13px 15px;border:1px solid #e4ddef;background:#fff;border-radius:13px;text-align:left;font-weight:750;color:var(--ink)}.answer:hover{border-color:var(--purple);background:#f8f5ff}.answer.chosen{background:#efeaff;border-color:var(--purple)}.result{background:linear-gradient(135deg,#fff0f7,#f0efff);border-radius:18px;padding:22px;text-align:center;margin:15px 0}.result .bigemoji{font-size:3.5rem}.result h3{font-size:1.55rem;margin:8px 0}.result p{color:var(--muted);line-height:1.7}.footer{padding:26px 0 38px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}.footer-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.notice{background:#fff8d9;border:1px solid #ffeba0;padding:12px 14px;border-radius:13px;color:#6c5510;font-size:.86rem;line-height:1.6}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:38px}.hero-art{min-height:245px}.bubble.big{width:180px;height:190px;font-size:5rem}.bubble.small{width:112px;height:100px;font-size:3rem}.bubble.note{width:125px;height:90px;font-size:.9rem}.grid{grid-template-columns:repeat(2,1fr)}.meme-layout{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}}
+@media(max-width:520px){.nav{align-items:flex-start}.brand{font-size:1.05rem}.logo{width:36px;height:36px}.navlinks a{font-size:.82rem;padding:8px}.grid{grid-template-columns:1fr}.hero h1{letter-spacing:-1px}.hero-art{min-height:220px}.card{padding:18px}.section{padding:28px 0 42px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#" style="text-decoration:none;color:inherit"><span class="logo">🎉</span><span>Bangla <span class="gradient">Fun Zone</span></span></a>
+    <nav class="navlinks"><a href="#quizzes">🎯 কুইজ</a><a href="#meme">😂 মিম মেকার</a></nav>
+  </div>
+</header>
+<main>
+<section class="wrap hero">
+  <div>
+    <span class="eyebrow">✨ হাসি • কুইজ • ক্রিয়েটিভিটি</span>
+    <h1>মজা হোক <span class="gradient">বাংলায়!</span></h1>
+    <p>মজার কুইজ খেলো, নিজের মিম বানাও, তারপর বন্ধুদের সঙ্গে শেয়ার করো। তোমার ফান জোনে স্বাগতম!</p>
+    <div class="actions"><a class="btn primary" href="#quizzes">কুইজ খেলি 🎯</a><a class="btn secondary" href="#meme">মিম বানাই 😂</a></div>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="bubble big">😎</div><div class="bubble small">🤣</div><div class="bubble note">আজকের মুড:<br><span style="font-size:1.5rem">ফুল অন ফান!</span></div></div>
+</section>
+
+<section class="wrap section" id="quizzes">
+  <div class="section-head"><div><span class="pill">🎯 কুইজ কর্নার</span><h2 style="margin-top:12px">নিজেকে কতটা চেনো?</h2><p>একটা কুইজ বেছে নাও, কয়েকটি প্রশ্নের উত্তর দাও আর মজার ফলাফল দেখো।</p></div></div>
+  <div class="grid" id="quizGrid"></div>
+</section>
+
+<section class="wrap section" id="meme">
+  <div class="section-head"><div><span class="pill">😂 ক্রিয়েটিভ কর্নার</span><h2 style="margin-top:12px">নিজের মিম নিজেই বানাও</h2><p>রেডিমেড টেমপ্লেট বেছে নাও অথবা নিজের ছবি আপলোড করো।</p></div></div>
+  <div class="meme-layout">
+    <div class="card controls">
+      <div class="field"><label for="template">১. টেমপ্লেট বেছে নাও</label><select id="template">
+        <option value="cool">😎 কুল মুড</option><option value="study">📚 পরীক্ষার চাপ</option><option value="love">💘 প্রেমের অবস্থা</option><option value="sleep">😴 ঘুম পেলে</option><option value="friend">😂 বন্ধু যখন...</option>
+      </select></div>
+      <div class="field"><label for="upload">২. নিজের ছবি ব্যবহার করতে চাইলে</label><input type="file" id="upload" accept="image/*"><span class="hint">ছবি শুধু তোমার ব্রাউজারেই প্রসেস হবে; এই ডেমোতে সার্ভারে আপলোড করা হয় না।</span></div>
+      <div class="field"><label for="topText">৩. উপরের লেখা</label><input id="topText" type="text" maxlength="100" value="আমি যখন বলি আজ থেকে সিরিয়াস হবো"></div>
+      <div class="field"><label for="bottomText">৪. নিচের লেখা</label><input id="bottomText" type="text" maxlength="100" value="তারপর ৫ মিনিট পরেই 😴"></div>
+      <div class="field"><label for="textColor">৫. লেখার রং</label><select id="textColor"><option value="#ffffff">সাদা</option><option value="#ffea00">হলুদ</option><option value="#ff4f9a">গোলাপি</option><option value="#111111">কালো</option></select></div>
+      <button class="btn primary" id="makeMeme">মিম আপডেট করো ✨</button>
+      <div class="notice">টিপস: ছোট ও মজার লেখা দিলে মিম পড়তে সহজ হয়। অন্যের ব্যক্তিগত ছবি অনুমতি ছাড়া ব্যবহার কোরো না।</div>
+    </div>
+    <div>
+      <div class="canvas-wrap"><canvas id="memeCanvas" width="720" height="720" aria-label="তৈরি হওয়া মিম"></canvas></div>
+      <div class="canvas-actions"><button class="btn primary" id="downloadMeme">⬇️ মিম ডাউনলোড</button><button class="btn secondary" id="shareMeme">🔗 শেয়ার</button></div>
+      <p class="hint" id="shareHint" aria-live="polite">মিম তৈরি হলে ডাউনলোড করে Facebook বা বন্ধুদের সঙ্গে শেয়ার করতে পারো।</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span><strong>Bangla Fun Zone</strong> — মজা হোক বাংলায়! 🎉</span><span>ফ্রি ডেমো • বাংলা কুইজ ও মিম মেকার</span></div></footer>
+
+<div class="quiz-modal" id="quizModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <div class="modal-top"><div><span class="pill" id="quizPill">কুইজ</span><h2 id="modalTitle" style="margin:12px 0 0">কুইজের নাম</h2></div><button class="close" id="closeQuiz" aria-label="বন্ধ করুন">×</button></div>
+    <div class="progress"><span id="progressBar"></span></div>
+    <div id="quizContent"></div>
+  </div>
+</div>
+<script>
+const quizzes = [
+ {id:"smart",title:"তুমি কতটা চালাক?",emoji:"🧠",desc:"মজার কয়েকটি প্রশ্নে নিজের স্কিল যাচাই করো।",wash:"#d9f9f4",questions:[
+  {q:"কোন জিনিস যত বেশি শুকায়, তত বেশি ভিজে?",a:["তোয়ালে","কাগজ","বালিশ","জুতা"],correct:0},
+  {q:"এক সপ্তাহে কয় দিন আছে?",a:["৫ দিন","৬ দিন","৭ দিন","৮ দিন"],correct:2},
+  {q:"তোমার কাছে ৩টি আম, তুমি ১টি বন্ধুকে দিলে—কয়টি থাকবে?",a:["১টি","২টি","৩টি","৪টি"],correct:1},
+  {q:"কোনটি দিয়ে সময় দেখা যায়?",a:["ঘড়ি","চামচ","বই","কাপ"],correct:0}
+ ],results:[["🤓","চালাকের চালাক!","তুমি বেশ মনোযোগী। এভাবেই কৌতূহলী থাকো!"],["😄","ভালোই তো!","আরও কয়েকটা কুইজ খেললে স্কোর বাড়তে পারে।"]]},
+ {id:"friend",title:"বন্ধুমহলে তুমি কেমন?",emoji:"🫶",desc:"তোমার বন্ধুত্বের স্টাইল কোন ধরনের?",wash:"#ffe2ef",questions:[
+  {q:"বন্ধু মন খারাপ করে থাকলে তুমি কী করো?",a:["মন দিয়ে শুনি","মজার কথা বলি","খাবার খেতে নিয়ে যাই","সময় দিই"],correct:0},
+  {q:"বন্ধুর জন্মদিনে তোমার প্ল্যান?",a:["সারপ্রাইজ","মেসেজ ও শুভেচ্ছা","একসঙ্গে আড্ডা","পরিস্থিতি দেখে"],correct:2},
+  {q:"গ্রুপে তোমার ভূমিকা কী?",a:["প্ল্যানার","কমেডিয়ান","শান্ত শ্রোতা","সবাইকে এক রাখি"],correct:1},
+  {q:"বন্ধু ভুল করলে?",a:["ব্যক্তিগতভাবে বুঝাই","হালকা মজা করি","আগে শুনি","সাহায্য করি"],correct:0}
+ ],results:[["💖","বন্ধুদের ভরসা!","তুমি বন্ধুত্বকে গুরুত্ব দাও—এটাই আসল ব্যাপার।"],["😂","গ্রুপের এন্টারটেইনার!","তোমার সঙ্গে আড্ডা জমে যাওয়ার সম্ভাবনা বেশি!"]]},
+ {id:"romantic",title:"তোমার রোমান্টিক মুড",emoji:"💘",desc:"হালকা মজার পার্সোনালিটি কুইজ।",wash:"#ffe4d1",questions:[
+  {q:"পারফেক্ট ছুটির দিন কোনটি?",a:["লম্বা আড্ডা","সিনেমা ও স্ন্যাকস","প্রকৃতির মাঝে ঘোরা","ঘরে আরাম"],correct:1},
+  {q:"কেউ তোমাকে প্রশংসা করলে?",a:["হেসে ধন্যবাদ","লজ্জা পাই","মজার উত্তর দিই","বিষয় পাল্টাই"],correct:0},
+  {q:"সারপ্রাইজ পেলে?",a:["খুব খুশি","অবাক হই","ছবি তুলি","পাল্টা সারপ্রাইজ ভাবি"],correct:0},
+  {q:"কোন উপহার বেশি ভালো লাগে?",a:["হাতে লেখা চিঠি","প্রিয় খাবার","একসঙ্গে সময়","ছোট স্মারক"],correct:2}
+ ],results:[["🌷","সফট হার্ট!","ছোট ছোট মুহূর্তে আনন্দ খুঁজে পাওয়াই তোমার স্টাইল।"],["✨","চিল রোমান্টিক!","তোমার কাছে ভালো সময় আর আন্তরিকতাই গুরুত্বপূর্ণ।"]]},
+ {id:"mood",title:"আজকের তোমার মুড",emoji:"🌈",desc:"আজ তুমি কোন ভাইবে আছো?",wash:"#e5e0ff",questions:[
+  {q:"সকালে ঘুম থেকে উঠে প্রথমে কী করতে ইচ্ছে করে?",a:["আরও ঘুম","ফোন চেক","চা/কফি","কাজ শুরু"],correct:0},
+  {q:"বন্ধুরা ঘুরতে ডাকলে?",a:["চলো যাই","কোথায় আগে বল","বাজেট দেখি","আজকে না"],correct:1},
+  {q:"এক ঘণ্টা ফ্রি পেলে?",a:["গান শুনি","স্ক্রল করি","কিছু শিখি","ঘুমাই"],correct:0},
+  {q:"তোমার মুডের রং?",a:["হলুদ","নীল","গোলাপি","সবুজ"],correct:3}
+ ],results:[["☀️","ফুল এনার্জি!","আজ নিজের জন্য একটা ভালো কাজ করো।"],["😴","আরাম মুড!","একটু বিরতি নাও, নিজের যত্নও জরুরি।"]]},
+ {id:"study",title:"পরীক্ষার সময় তুমি",emoji:"📚",desc:"পরীক্ষার আগের চিরচেনা অবস্থা!",wash:"#fff0b8",questions:[
+  {q:"পরীক্ষার এক সপ্তাহ আগে?",a:["রুটিন করে পড়ি","এখনও সময় আছে","বন্ধুর নোট চাই","সবই একটু একটু"],correct:0},
+  {q:"কঠিন প্রশ্ন এলে?",a:["শান্ত থাকি","পরের প্রশ্নে যাই","মনে করার চেষ্টা","গভীর শ্বাস নিই"],correct:1},
+  {q:"পড়ার সময় ফোন?",a:["দূরে রাখি","বারবার দেখি","সাইলেন্ট করি","শুধু বিরতিতে"],correct:0},
+  {q:"পরীক্ষা শেষে?",a:["রিল্যাক্স","উত্তর মিলাই","বন্ধুদের জিজ্ঞেস","ঘুম"],correct:3}
+ ],results:[["🏆","প্ল্যানার স্টুডেন্ট!","ছোট ছোট প্রস্তুতিই কাজে দেয়।"],["🤣","লাস্ট-মিনিট লেজেন্ড!","পরেরবার একটু আগে শুরু করলে আরও ভালো হবে।"]]}
+];
+const quizGrid=document.getElementById("quizGrid");
+quizzes.forEach(q=>{const el=document.createElement("article");el.className="card quiz-card";el.style.setProperty("--wash",q.wash);el.innerHTML=`<div class="emoji">${q.emoji}</div><h3>${q.title}</h3><p>${q.desc}</p><button class="btn secondary" type="button">কুইজ খেলি →</button>`;el.querySelector("button").addEventListener("click",()=>startQuiz(q.id));quizGrid.appendChild(el);});
+const modal=document.getElementById("quizModal"),quizContent=document.getElementById("quizContent"),progressBar=document.getElementById("progressBar");
+let activeQuiz=null,qIndex=0,score=0;
+function startQuiz(id){activeQuiz=quizzes.find(q=>q.id===id);qIndex=0;score=0;modal.classList.add("show");document.body.style.overflow="hidden";renderQuestion();}
+function renderQuestion(){const q=activeQuiz.questions[qIndex];document.getElementById("modalTitle").textContent=activeQuiz.title;document.getElementById("quizPill").textContent=`প্রশ্ন ${qIndex+1}/${activeQuiz.questions.length}`;progressBar.style.width=`${qIndex/activeQuiz.questions.length*100}%`;quizContent.innerHTML=`<div class="question">${q.q}</div><div class="answers">${q.a.map((a,i)=>`<button class="answer" data-index="${i}">${String.fromCharCode(65+i)}. ${a}</button>`).join("")}</div><p class="hint">উত্তর বেছে নাও, তারপর পরের প্রশ্নে যাও।</p>`;quizContent.querySelectorAll(".answer").forEach(btn=>btn.addEventListener("click",()=>{score+=Number(btn.dataset.index)===q.correct?1:0;qIndex++;if(qIndex<activeQuiz.questions.length)renderQuestion();else showResult();}));}
+function showResult(){progressBar.style.width="100%";const good=score>=Math.ceil(activeQuiz.questions.length/2);const r=activeQuiz.results[good?0:1];const msg=`আমি “${activeQuiz.title}” কুইজে ${activeQuiz.questions.length}টির মধ্যে ${score} পেয়েছি! ${r[1]} — Bangla Fun Zone`;quizContent.innerHTML=`<div class="result"><div class="bigemoji">${r[0]}</div><h3>${r[1]}</h3><p>${r[2]}</p><p><strong>স্কোর: ${score}/${activeQuiz.questions.length}</strong></p></div><div class="actions"><button class="btn primary" id="shareResult">ফলাফল শেয়ার 🔗</button><button class="btn secondary" id="retryQuiz">আবার খেলি ↻</button></div><p class="hint">এটি শুধুই বিনোদনের কুইজ; ফলাফল কোনো বৈজ্ঞানিক মূল্যায়ন নয়।</p>`;document.getElementById("shareResult").onclick=()=>shareText(msg);document.getElementById("retryQuiz").onclick=()=>startQuiz(activeQuiz.id);}
+function closeQuiz(){modal.classList.remove("show");document.body.style.overflow="";}
+document.getElementById("closeQuiz").onclick=closeQuiz;modal.addEventListener("click",e=>{if(e.target===modal)closeQuiz();});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeQuiz();});
+async function shareText(text){if(navigator.share){try{await navigator.share({title:"Bangla Fun Zone",text,url:location.href});return;}catch(e){}}try{await navigator.clipboard.writeText(text+" "+location.href);alert("শেয়ার করার লেখা কপি হয়েছে!");}catch(e){prompt("এই লেখাটি কপি করে শেয়ার করো:",text+" "+location.href);}}
+const canvas=document.getElementById("memeCanvas"),ctx=canvas.getContext("2d");let uploadedImage=null;
+const templates={
+ cool:{bg:["#ffcf70","#ff76b7"],emoji:"😎",top:"আমি যখন বলি আজ থেকে সিরিয়াস হবো",bottom:"তারপর ৫ মিনিট পরেই 😴"},
+ study:{bg:["#b6e6ff","#9c8bff"],emoji:"📚",top:"পরীক্ষার আগের রাত",bottom:"সিলেবাস দেখে আমার অবস্থা 💀"},
+ love:{bg:["#ffd2e6","#ff6b9e"],emoji:"💘",top:"সে বলেছে 'হাই'",bottom:"আমি: বিয়ের প্ল্যান শুরু করি? 😂"},
+ sleep:{bg:["#b9b7ff","#5a5c9f"],emoji:"😴",top:"মাত্র ৫ মিনিট চোখ বন্ধ করব",bottom:"২ ঘণ্টা পর ঘুম ভাঙল"},
+ friend:{bg:["#ffe57c","#ff986b"],emoji:"🤣",top:"বন্ধু: একটা কথা বলব, রাগ করিস না",bottom:"আমি: আগে থেকেই রেগে গেলাম"}
+};
+function roundedRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+function wrapText(text,maxWidth,fontSize){ctx.font=`900 ${fontSize}px system-ui, sans-serif`;let words=text.split(/\s+/),lines=[],line="";for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word;}else line=test;}if(line)lines.push(line);return lines;}
+function drawMeme(){const tpl=templates[document.getElementById("template").value];const top=document.getElementById("topText").value||"তোমার মজার লেখা";const bottom=document.getElementById("bottomText").value||"আরও একটা মজার কথা";const color=document.getElementById("textColor").value;
+ const W=720,H=720;ctx.clearRect(0,0,W,H);
+ if(uploadedImage){ctx.save();let iw=uploadedImage.width,ih=uploadedImage.height,scale=Math.max(W/iw,H/ih),sw=W/scale,sh=H/scale,sx=(iw-sw)/2,sy=(ih-sh)/2;ctx.drawImage(uploadedImage,sx,sy,sw,sh,0,0,W,H);ctx.restore();}
+ else {const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,tpl.bg[0]);g.addColorStop(1,tpl.bg[1]);ctx.fillStyle=g;ctx.fillRect(0,0,W,H);ctx.fillStyle="#ffffff44";ctx.beginPath();ctx.arc(560,370,180,0,Math.PI*2);ctx.fill();ctx.font="230px system-ui, sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(tpl.emoji,360,365);}
+ ctx.fillStyle="#0000008c";ctx.fillRect(0,0,W,160);ctx.fillRect(0,H-180,W,180);
+ const fontSize=top.length>55?31:top.length>35?39:48;const lines=wrapText(top,W-52,fontSize);ctx.fillStyle=color;ctx.strokeStyle="#171329";ctx.lineWidth=4;ctx.textAlign="center";ctx.textBaseline="middle";let y=80-(lines.length-1)*fontSize*.55;lines.slice(0,3).forEach(line=>{ctx.font=`900 ${fontSize}px system-ui, sans-serif`;ctx.strokeText(line,W/2,y);ctx.fillText(line,W/2,y);y+=fontSize*1.12;});
+ const f2=bottom.length>55?29:bottom.length>35?36:43;const lines2=wrapText(bottom,W-52,f2);y=H-85-(lines2.length-1)*f2*.55;lines2.slice(0,3).forEach(line=>{ctx.font=`900 ${f2}px system-ui, sans-serif`;ctx.strokeText(line,W/2,y);ctx.fillText(line,W/2,y);y+=f2*1.12;});
+ ctx.textAlign="left";ctx.font="bold 18px system-ui, sans-serif";ctx.fillStyle="#ffffffcc";ctx.fillText("Bangla Fun Zone",18,H-18);
+}
+document.getElementById("template").addEventListener("change",()=>{const t=templates[document.getElementById("template").value];if(!uploadedImage){document.getElementById("topText").value=t.top;document.getElementById("bottomText").value=t.bottom;}drawMeme();});
+["topText","bottomText","textColor"].forEach(id=>document.getElementById(id).addEventListener("input",drawMeme));
+document.getElementById("upload").addEventListener("change",e=>{const file=e.target.files&&e.target.files[0];if(!file)return;if(!file.type.startsWith("image/")){alert("একটি ছবি ফাইল বেছে নাও।");return;}const reader=new FileReader();reader.onload=ev=>{const img=new Image();img.onload=()=>{uploadedImage=img;drawMeme();};img.src=ev.target.result;};reader.readAsDataURL(file);});
+document.getElementById("makeMeme").onclick=drawMeme;
+document.getElementById("downloadMeme").onclick=()=>{drawMeme();const a=document.createElement("a");a.download="bangla-fun-zone-meme.png";a.href=canvas.toDataURL("image/png");a.click();};
+document.getElementById("shareMeme").onclick=async()=>{drawMeme();canvas.toBlob(async blob=>{if(blob&&navigator.canShare&&navigator.canShare({files:[new File([blob],"meme.png",{type:"image/png"})]})){try{await navigator.share({files:[new File([blob],"bangla-fun-zone-meme.png",{type:"image/png"})],title:"আমার মিম — Bangla Fun Zone"});return;}catch(e){}}document.getElementById("shareHint").textContent="মিমটি ডাউনলোড করে Facebook বা Messenger-এ শেয়ার করো।";shareText("আমি Bangla Fun Zone-এ নিজের মিম বানিয়েছি! তুমিও বানাও:");},"image/png");};
+drawMeme();
+</script>
+</body>
+</html>
