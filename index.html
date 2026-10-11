@@ -401,7 +401,25 @@
   <h2>😂 নিজের মিম নিজেই বানাও</h2>
   <p>ছবি বেছে নাও, মজার লেখা দাও, তারপর মিম ডাউনলোড করো!</p>
 
-  <div class="meme-box">
+  <div class="meme-box"> 
+    
+<label class="meme-label" for="memeCategory">💖 মিমের ক্যাটাগরি</label>
+<select id="memeCategory">
+  <option value="funny">😂 Funny Memes</option>
+  <option value="romantic">💘 Romantic Memes</option>
+  <option value="sad">💔 Sad Memes</option>
+  <option value="relationship">🫶 Relationship Memes</option>
+  <option value="motivational">🔥 Motivational Memes</option>
+  <option value="student">📚 Student Memes</option>
+</select>
+
+<label class="meme-label" for="memePreset">✨ রেডিমেড টাইটেল ও লেখা</label>
+<select id="memePreset"></select>
+
+<button type="button" onclick="applyMemePreset()">
+  ✨ এই লেখা দিয়ে মিম বানাও
+</button>
+
     <label class="meme-label" for="memeTemplate">🎨 টেমপ্লেট বেছে নাও</label>
     <select id="memeTemplate">
       <option value="plain">সাধারণ ব্যাকগ্রাউন্ড</option>
@@ -736,6 +754,85 @@ async function shareMeme() {
 }
 
 updateMeme();
+
+
+const memePresets = {
+  funny: [
+    ["আমার লাইফের প্ল্যান", "প্ল্যানটা এখনো লোড হচ্ছে 😂"],
+    ["টাকা থাকলে", "মন খারাপও VIP হয়ে যায় 🤣"],
+    ["আমি অলস নই", "আমি এনার্জি সেভ করছি 😎"],
+    ["বন্ধু: কোথায়?", "আমি: নিজের কল্পনার জগতে! 😂"]
+  ],
+  romantic: [
+    ["তোমাকে দেখার পর", "Wi-Fi ছাড়াই কানেকশন হয়ে গেল 💘"],
+    ["তুমি অনলাইনে", "আমার মনও অনলাইনে ❤️"],
+    ["প্রেমের হিসাব", "তুমি বেশি, অভিমানও বেশি 🥰"],
+    ["তোমার হাসি", "আমার প্রিয় নোটিফিকেশন 💖"]
+  ],
+  sad: [
+    ["হাসছি ঠিকই", "কিন্তু মনটা একটু চুপচাপ 💔"],
+    ["সব কথা বলা যায় না", "কিছু অনুভূতি নীরব থাকে 🥀"],
+    ["সময় বদলায়", "সঙ্গে মানুষও বদলায় 😔"],
+    ["ভালো থাকার চেষ্টা", "প্রতিদিনের নতুন গল্প 🖤"]
+  ],
+  relationship: [
+    ["রাগ করেছি", "কিন্তু রিপ্লাইয়ের অপেক্ষায় আছি 😂"],
+    ["সম্পর্কে শান্তি চাই", "কিন্তু দুজনেই গোয়েন্দা! 🤭"],
+    ["তুমি ব্যস্ত?", "আমার সন্দেহ কিন্তু ব্যস্ত নয় 😅"],
+    ["বন্ধুত্ব মানে", "বিপদে পাশে, খাবারে আগে! 🤣"]
+  ],
+  motivational: [
+    ["আজ ছোট পদক্ষেপ", "কাল বড় পরিবর্তন 🔥"],
+    ["ধীরে এগোও", "কিন্তু থেমে যেয়ো না 💪"],
+    ["ব্যর্থতা শেষ নয়", "নতুন করে শেখার সুযোগ 🌟"],
+    ["নিজের সঙ্গে প্রতিযোগিতা", "গতকালের চেয়ে আজ ভালো হও 🚀"]
+  ],
+  student: [
+    ["পরীক্ষা কাল", "পড়ার কথা মনে পড়ল আজ! 📚"],
+    ["বই খুলেছি", "এবার ঘুমের সঙ্গে যুদ্ধ 😴"],
+    ["প্রশ্ন সহজ ছিল", "উত্তরগুলো অপরিচিত! 😂"],
+    ["রুটিন বানালাম", "এবার রুটিন দেখার রুটিন! 🤣"]
+  ]
+};
+
+function updatePresetOptions() {
+  const category = document.getElementById("memeCategory").value;
+  const presetSelect = document.getElementById("memePreset");
+
+  presetSelect.innerHTML = "";
+
+  memePresets[category].forEach(function (preset, index) {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = preset[0] + " — " + preset[1];
+    presetSelect.appendChild(option);
+  });
+}
+
+function applyMemePreset() {
+  const category = document.getElementById("memeCategory").value;
+  const index = Number(document.getElementById("memePreset").value);
+  const preset = memePresets[category][index];
+
+  if (!preset) return;
+
+  document.getElementById("memeTop").value = preset[0];
+  document.getElementById("memeBottom").value = preset[1];
+
+  updateMeme();
+
+  document.getElementById("memeCanvas").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+document.getElementById("memeCategory").addEventListener(
+  "change",
+  updatePresetOptions
+);
+
+updatePresetOptions();
 
     
   </script>
