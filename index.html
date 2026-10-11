@@ -173,6 +173,26 @@
   flex: 1 1 130px;
 }
 
+    
+/* Meme button on every joke, riddle and status */
+.meme-from-joke-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: #7c3aed;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.meme-from-joke-btn:hover {
+  opacity: 0.88;
+}
+
+    
   </style>
 </head>
 
@@ -833,6 +853,97 @@ document.getElementById("memeCategory").addEventListener(
 );
 
 updatePresetOptions();
+
+
+
+function addMemeButtonsToCards() {
+  const cards = document.querySelectorAll(
+    ".joke, .searchable, .status, .riddle"
+  );
+
+  cards.forEach(function (card) {
+    if (
+      card.closest("#meme-maker") ||
+      card.dataset.memeButtonAdded === "yes"
+    ) {
+      return;
+    }
+
+    // Avoid adding duplicate buttons to nested cards.
+    if (card.parentElement?.closest(
+      ".joke, .searchable, .status, .riddle"
+    )) {
+      return;
+    }
+
+    card.dataset.memeButtonAdded = "yes";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "meme-from-joke-btn";
+    button.textContent = "😂 এই লেখা দিয়ে মিম বানাও";
+
+    button.addEventListener("click", function () {
+      const copy = card.cloneNode(true);
+
+      copy.querySelectorAll(
+        "button, script, input, select, textarea"
+      ).forEach(function (element) {
+        element.remove();
+      });
+
+      let text = (copy.innerText || copy.textContent || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (!text) {
+        alert("এই লেখাটি পাওয়া যায়নি।");
+        return;
+      }
+
+      // Remove common content labels.
+      text = text.replace(
+        /^(জোকস|জোক|ধাঁধা|ফানি স্ট্যাটাস|স্ট্যাটাস)\s*[:：-]\s*/i,
+        ""
+      );
+
+      const topInput = document.getElementById("memeTop");
+      const bottomInput = document.getElementById("memeBottom");
+
+      // Split the text into top and bottom captions.
+      const words = text.split(/\s+/);
+      let top = "";
+      let bottom = "";
+
+      if (words.length > 1) {
+        const midpoint = Math.ceil(words.length / 2);
+        top = words.slice(0, midpoint).join(" ");
+        bottom = words.slice(midpoint).join(" ");
+      } else {
+        top = text;
+      }
+
+      topInput.value = top;
+      bottomInput.value = bottom;
+
+      if (typeof updateMeme === "function") {
+        updateMeme();
+      }
+
+      document.getElementById("meme-maker")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+      topInput.focus();
+    });
+
+    card.appendChild(button);
+  });
+}
+
+addMemeButtonsToCards();
 
     
   </script>
